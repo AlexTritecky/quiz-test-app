@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Category, Difficulty, Question, SubCategory } from "../data.models";
+import { Difficulty, Question, SubCategory } from "../data.models";
 import { Observable, Subject, first, map, takeUntil, tap } from "rxjs";
 import { QuizService } from "../quiz.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -18,7 +18,7 @@ export class QuizMakerComponent implements OnInit, OnDestroy {
   bonusQuestion!: Question;
 
   quizForm: FormGroup;
-  selectedCategoryHierarchy: SubCategory | undefined;
+  selectedCategoryHierarchy!: SubCategory;
 
   private destroy$: Subject<boolean> = new Subject<boolean>();
   private categoryHierarchyList: SubCategory[] = [];
@@ -53,8 +53,6 @@ export class QuizMakerComponent implements OnInit, OnDestroy {
     const { category, subcategory, difficulty } = this.quizForm.value;
     const id = subcategory || category;
 
-    console.log(12, this.quizForm.value);
-
     // Reset questions, set defaults
     this.quizQuestions = [];
     // avoiding extra call
@@ -68,7 +66,7 @@ export class QuizMakerComponent implements OnInit, OnDestroy {
         this.quizQuestions = questions;
       });
   }
-  //  replace question to our bonus question
+
   switchQuestion(question: Question): void {
     const index = this.quizQuestions.findIndex(
       (item) => item.question === question.question
@@ -122,7 +120,7 @@ export class QuizMakerComponent implements OnInit, OnDestroy {
   private setSelectedCategoryHierarchy(categoryId: number): void {
     this.selectedCategoryHierarchy = this.categoryHierarchyList.find(
       (category) => category.id === categoryId
-    );
+    ) as SubCategory;
   }
 
   private showInvalidFormError(): void {

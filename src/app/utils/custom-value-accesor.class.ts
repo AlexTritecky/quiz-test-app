@@ -74,8 +74,4 @@ export abstract class CustomValueAccessor<T>
   touch(): void {
     this.touches.forEach((fn) => fn());
   }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
 }

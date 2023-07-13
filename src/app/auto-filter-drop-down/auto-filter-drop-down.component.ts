@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { CustomValueAccessor } from "../utils/custom-value-accesor.class";
 import { FormControl } from "@angular/forms";
 import { TrackByUtils } from "../utils/track-by.utils";
+import { Category, SubCategory } from "../data.models";
 
 @Component({
   selector: "app-auto-filter-drop-down",
@@ -15,7 +16,7 @@ export class AutoFilterDropDownComponent
   extends CustomValueAccessor<string>
   implements OnInit
 {
-  @Input({ required: true }) dataOptions!: any;
+  @Input({ required: true }) dataOptions!: Array<SubCategory | Category>;
   @Input() placeholderText: string = "Select";
   @Input() optionValue: string = "id";
   @Input() optionLabel: string = "name";
