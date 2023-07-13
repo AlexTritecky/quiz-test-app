@@ -1,4 +1,5 @@
 import {
+    AbstractControl,
   ControlValueAccessor,
   FormControl,
   NG_VALUE_ACCESSOR,
@@ -20,7 +21,7 @@ export abstract class CustomValueAccessor<T>
   disabled = false;
   changes: Array<(value: T) => void> = [];
   touches: Array<() => void> = [];
-  control!: FormControl;
+  control!: AbstractControl | null;
   transformGetValue!: (value: T) => any;
   transformSetValue!: (value: any) => T;
 
@@ -47,16 +48,13 @@ export abstract class CustomValueAccessor<T>
     };
   }
 
-  static getFormControl(ngControl: NgControl): FormControl | null {
-    return ngControl ? (ngControl.control as FormControl) : null;
+  static getFormControl(ngControl: NgControl): AbstractControl | null {
+    return ngControl ? ngControl.control : null;
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      const ngControl = this.injector.get(NgControl, null);
-      // @ts-ignore
-      this.control = CustomValueAccessor.getFormControl(ngControl);
-    });
+    const ngControl = this.injector.get(NgControl, null);
+  this.control = CustomValueAccessor.getFormControl(ngControl!);
   }
 
   writeValue(value: T): void {

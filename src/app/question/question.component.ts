@@ -24,23 +24,19 @@ export class QuestionComponent {
   userAnswer?: string;
   @Input() isExtraQuestionUsed: boolean = false;
 
-  getButtonClass(answer: string): string {
-    if (!this.userAnswer) {
-      if (this.currentSelection == answer) return "tertiary";
-    } else {
-      if (this.userAnswer == this.correctAnswer && this.userAnswer == answer)
-        return "tertiary";
-      if (answer == this.correctAnswer) return "secondary";
-    }
-    return "primary";
-  }
-
   @Output()
   change = new EventEmitter<string>();
   @Output()
   changeQuestion = new EventEmitter<Question>();
 
   currentSelection!: string;
+
+  getButtonClass(answer: string): string {
+    const isSelected = !this.userAnswer && this.currentSelection === answer;
+    const isCorrect =
+      this.userAnswer === this.correctAnswer && this.userAnswer === answer;
+    return isSelected ? "tertiary" : isCorrect ? "secondary" : "primary";
+  }
 
   buttonClicked(answer: string): void {
     this.currentSelection = answer;
