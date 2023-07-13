@@ -7,9 +7,9 @@
 <div class="dropdown">
   <input
     [formControl]="searchControl"
-    (focus)="displayResults = true"
     type="text"
     [placeholder]="placeholderText"
+    (focus)="onInputFocus()"
   />
   <div *ngIf="displayResults" class="dropdown-options">
     <div
@@ -20,11 +20,9 @@
       class="dropdown-option"
       (click)="selectOption(option)"
     >
-      <span
-        [innerHTML]="
-          option[optionLabel] | textHighLight : searchControl.value || ''
-        "
-      ></span>
+      <span>
+        {{ option[optionLabel] | textHighLight : searchControl.value || "" }}
+      </span>
     </div>
   </div>
 </div>

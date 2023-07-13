@@ -15,7 +15,7 @@ export class AutoFilterDropDownComponent
   extends CustomValueAccessor<string>
   implements OnInit
 {
-  @Input() dataOptions!: any;
+  @Input({ required: true }) dataOptions!: any;
   @Input() placeholderText: string = "Select";
   @Input() optionValue: string = "id";
   @Input() optionLabel: string = "name";
@@ -29,6 +29,10 @@ export class AutoFilterDropDownComponent
     this.searchControl.valueChanges.subscribe((value) => {
       this.displayResults = !!value?.length;
     });
+  }
+
+  onInputFocus(): void {
+    this.displayResults = true;
   }
 
   selectOption(value: any): void {
