@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { CustomValueAccessor } from "../utils/custom-value-accesor.class";
 import { FormControl } from "@angular/forms";
 import { TrackByUtils } from "../utils/track-by.utils";
-import { Category, SubCategory } from "../data.models";
+import { SubCategory, Category } from "../models/category.interface";
 
 @Component({
   selector: "app-auto-filter-drop-down",

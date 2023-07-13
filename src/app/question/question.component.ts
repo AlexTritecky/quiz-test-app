@@ -1,12 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from "@angular/core";
-import { Question } from "../data.models";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { TrackByUtils } from "../utils/track-by.utils";
+import { Question } from "../models/question.interface";
 
 @Component({
   selector: "app-question",

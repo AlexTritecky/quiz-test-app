@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Difficulty, Question, SubCategory } from "../data.models";
 import { Observable, Subject, first, map, takeUntil, tap } from "rxjs";
 import { QuizService } from "../quiz.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastService } from "../toast.service";
+import { SubCategory } from "../models/category.interface";
+import { Difficulty } from "../models/difficulty.type";
+import { Question } from "../models/question.interface";
 
 @Component({
   selector: "app-quiz-maker",

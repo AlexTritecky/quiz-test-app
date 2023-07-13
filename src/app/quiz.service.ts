@@ -1,14 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { map, Observable } from "rxjs";
-import {
-  Category,
-  Difficulty,
-  ApiQuestion,
-  Question,
-  Results,
-  SubCategory,
-} from "./data.models";
+import { ApiQuestion } from "./models/api-question.interface";
+import { Category, SubCategory } from "./models/category.interface";
+import { Difficulty } from "./models/difficulty.type";
+import { Question } from "./models/question.interface";
+import { Results } from "./models/results.interface";
 
 @Injectable({
   providedIn: "root",
@@ -25,14 +22,25 @@ export class QuizService {
       .pipe(map((res) => res.trivia_categories));
   }
 
-  createQuiz(categoryId: string, difficulty: Difficulty, perPage: number = 5): Observable<Question[]> {
-    return this.http.get<{ results: ApiQuestion[] }>(
-        `${this.API_URL}/api.php?amount=${perPage}&category=${categoryId}&difficulty=${difficulty.toLowerCase()}&type=multiple`)
+  createQuiz(
+    categoryId: string,
+    difficulty: Difficulty,
+    perPage: number = 5
+  ): Observable<Question[]> {
+    return this.http
+      .get<{ results: ApiQuestion[] }>(
+        `${
+          this.API_URL
+        }/api.php?amount=${perPage}&category=${categoryId}&difficulty=${difficulty.toLowerCase()}&type=multiple`
+      )
       .pipe(
-        map(res => {
-          const quiz: Question[] = res.results.map(q => (
-            {...q, all_answers: [...q.incorrect_answers, q.correct_answer].sort(() => (Math.random() > 0.5) ? 1 : -1)}
-          ));
+        map((res) => {
+          const quiz: Question[] = res.results.map((q) => ({
+            ...q,
+            all_answers: [...q.incorrect_answers, q.correct_answer].sort(() =>
+              Math.random() > 0.5 ? 1 : -1
+            ),
+          }));
           return quiz;
         })
       );
