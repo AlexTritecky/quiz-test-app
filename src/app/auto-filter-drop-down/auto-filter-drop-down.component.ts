@@ -23,7 +23,7 @@ export class AutoFilterDropDownComponent
   searchControl = new FormControl<string | null>("");
   displayResults = false;
 
-  TrackByUtils = TrackByUtils;
+  trackByUtils = TrackByUtils;
 
   ngOnInit(): void {
     this.searchControl.valueChanges.subscribe((value) => {

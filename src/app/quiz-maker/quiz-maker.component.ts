@@ -3,7 +3,6 @@ import { Category, Difficulty, Question, SubCategory } from "../data.models";
 import { Observable, Subject, first, map, takeUntil, tap } from "rxjs";
 import { QuizService } from "../quiz.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { TrackByUtils } from "../utils/track-by.utils";
 import { ToastService } from "../toast.service";
 
 @Component({
@@ -14,8 +13,6 @@ import { ToastService } from "../toast.service";
 export class QuizMakerComponent implements OnInit, OnDestroy {
   categories$: Observable<SubCategory[]>;
   questions$!: Observable<Question[]>;
-
-  TrackByUtils: typeof TrackByUtils = TrackByUtils;
 
   quizQuestions!: Question[];
   bonusQuestion!: Question;

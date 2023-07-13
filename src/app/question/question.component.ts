@@ -14,7 +14,7 @@ import { TrackByUtils } from "../utils/track-by.utils";
   styleUrls: ["./question.component.css"],
 })
 export class QuestionComponent {
-  TrackByUtils: typeof TrackByUtils = TrackByUtils;
+  trackByUtils: typeof TrackByUtils = TrackByUtils;
 
   @Input({ required: true })
   question!: Question;

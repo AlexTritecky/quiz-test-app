@@ -15,7 +15,7 @@
     <div
       *ngFor="
         let option of searchControl.value | filterBy : dataOptions;
-        trackBy: TrackByUtils.id
+        trackBy: trackByUtils.id
       "
       class="dropdown-option"
       (click)="selectOption(option)"
