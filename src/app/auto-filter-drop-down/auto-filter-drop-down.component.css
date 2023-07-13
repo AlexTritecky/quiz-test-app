@@ -1,0 +1,39 @@
+.dropdown {
+  position: relative;
+  width: 200px;
+  z-index: 2;
+}
+
+.dropdown-overlay {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+input {
+  width: 100%;
+  margin: 0;
+}
+
+.dropdown-options {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 2px;
+  box-sizing: border-box;
+  background: white;
+  box-shadow: 0 10px 30px 5px #0000001a;
+}
+
+.dropdown-option {
+  cursor: pointer;
+}
+
+.dropdown-option:hover {
+  opacity: 0.8;
+}

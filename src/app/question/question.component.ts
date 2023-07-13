@@ -1,35 +1,44 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {Question} from '../data.models';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from "@angular/core";
+import { Question } from "../data.models";
+import { TrackByUtils } from "../utils/track-by.utils";
 
 @Component({
-  selector: 'app-question',
-  templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css']
+  selector: "app-question",
+  templateUrl: "./question.component.html",
+  styleUrls: ["./question.component.css"],
 })
 export class QuestionComponent {
+  TrackByUtils: typeof TrackByUtils = TrackByUtils;
 
-  @Input({required: true})
+  @Input({ required: true })
   question!: Question;
   @Input()
   correctAnswer?: string;
   @Input()
   userAnswer?: string;
+  @Input() isExtraQuestionUsed: boolean = false;
 
   getButtonClass(answer: string): string {
-    if (! this.userAnswer) {
-        if (this.currentSelection == answer)
-          return "tertiary";
+    if (!this.userAnswer) {
+      if (this.currentSelection == answer) return "tertiary";
     } else {
       if (this.userAnswer == this.correctAnswer && this.userAnswer == answer)
         return "tertiary";
-      if (answer == this.correctAnswer)
-        return "secondary";
+      if (answer == this.correctAnswer) return "secondary";
     }
     return "primary";
   }
 
   @Output()
   change = new EventEmitter<string>();
+  @Output()
+  changeQuestion = new EventEmitter<Question>();
 
   currentSelection!: string;
 

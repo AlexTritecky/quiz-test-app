@@ -1,0 +1,30 @@
+<div
+  *ngIf="displayResults"
+  class="dropdown-overlay"
+  (click)="displayResults = false"
+></div>
+
+<div class="dropdown">
+  <input
+    [formControl]="searchControl"
+    (focus)="displayResults = true"
+    type="text"
+    [placeholder]="placeholderText"
+  />
+  <div *ngIf="displayResults" class="dropdown-options">
+    <div
+      *ngFor="
+        let option of searchControl.value | filterBy : dataOptions;
+        trackBy: TrackByUtils.id
+      "
+      class="dropdown-option"
+      (click)="selectOption(option)"
+    >
+      <span
+        [innerHTML]="
+          option[optionLabel] | textHighLight : searchControl.value || ''
+        "
+      ></span>
+    </div>
+  </div>
+</div>

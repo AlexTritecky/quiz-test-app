@@ -1,0 +1,20 @@
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 20px;
+  color: white;
+  cursor: pointer;
+}
+.success {
+  background-color: green;
+}
+.error {
+  background-color: red;
+}
+.info {
+  background-color: blue;
+}
+.warning {
+  background-color: orange;
+}

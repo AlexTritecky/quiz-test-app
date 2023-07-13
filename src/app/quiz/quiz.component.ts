@@ -1,4 +1,4 @@
-import {Component, inject, Input} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {Question} from '../data.models';
 import {QuizService} from '../quiz.service';
 import {Router} from '@angular/router';
@@ -10,8 +10,9 @@ import {Router} from '@angular/router';
 })
 export class QuizComponent {
 
-  @Input()
-  questions: Question[] | null = [];
+  @Input() questions: Question[] | null = [];
+  @Output() changeQuestion: EventEmitter<Question> = new EventEmitter<Question>();
+  hideChangeButton: boolean = false;
 
   userAnswers: string[] = [];
   quizService = inject(QuizService);

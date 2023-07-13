@@ -3,6 +3,10 @@ export interface Category {
   name: string;
 }
 
+export interface SubCategory extends Category {
+  subcategories: Category[];
+}
+
 export interface ApiQuestion {
   category: string;
   type: string;
@@ -25,5 +29,9 @@ export interface Results {
   score: number;
 }
 
-
 export type Difficulty = "Easy" | "Medium" | "Hard";
+
+export interface Toast {
+  message: string;
+  type: 'success' | 'error' | 'info' | 'warning';
+}
