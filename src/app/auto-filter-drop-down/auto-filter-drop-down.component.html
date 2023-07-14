@@ -20,9 +20,11 @@
       class="dropdown-option"
       (click)="selectOption(option)"
     >
-      <span>
-        {{ option[optionLabel] | textHighLight : searchControl.value || "" }}
-      </span>
+      <span
+        [innerHTML]="
+          option[optionLabel] | textHighLight : searchControl.value || ''
+        "
+      ></span>
     </div>
   </div>
 </div>
