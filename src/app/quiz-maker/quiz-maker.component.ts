@@ -57,7 +57,6 @@ export class QuizMakerComponent implements OnInit, OnDestroy {
 
     // Reset questions, set defaults
     this.quizQuestions = [];
-    // avoiding extra call
     this.quizService
       .createQuiz(id, difficulty as Difficulty, 6)
       .pipe(first(), takeUntil(this.destroy$))
@@ -75,7 +74,6 @@ export class QuizMakerComponent implements OnInit, OnDestroy {
     );
 
     if (index !== -1) {
-      // Get a new question from the API
       this.quizService
         .createQuiz(
           this.quizForm.value.category,
@@ -87,7 +85,6 @@ export class QuizMakerComponent implements OnInit, OnDestroy {
 
           // Replace the selected question with the new one
           this.quizQuestions.splice(index, 1, newQuestion);
-
           // Update the bonus question with the new first question
           this.bonusQuestion = newQuestions[0];
         });
